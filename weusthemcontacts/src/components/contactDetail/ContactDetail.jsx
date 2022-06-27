@@ -26,12 +26,10 @@ export function ContactDetail() {
       event.preventDefault();
       event.stopPropagation();
       setValidated(true);
-
     } else {
       setValidated(false);
       event.preventDefault();
       event.stopPropagation();
-      console.log(event);
       axios.put(`http://127.0.0.1:4000/contacts/${id}`, {
         fn: fn,
         ln: ln,
@@ -48,7 +46,7 @@ export function ContactDetail() {
 
   };
 
-  const handleDelete = () =>{
+  const handleDelete = () => {
     axios.delete(`http://127.0.0.1:4000/contacts/${id}`)
       .then((res) => {
         if (res.status == 200) {
@@ -56,7 +54,7 @@ export function ContactDetail() {
         }
       })
   }
-  
+
   useEffect(() => {
     axios.get(`http://127.0.0.1:4000/contacts/${id}`)
       .then((res) => {
@@ -96,27 +94,27 @@ export function ContactDetail() {
 
             <Row style={{ marginTop: "6rem" }}>
               <Col xs="6">
-                <Button 
-                  variant="secondary" 
+                <Button
+                  variant="secondary"
                   style={{ width: "90%" }}
                   onClick={handleShow}
-                  >
+                >
                   Delete
                 </Button>
                 <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Delete</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure to delete this contact?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleDelete}>
-            Delete
-          </Button>
-        </Modal.Footer>
-      </Modal>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Delete</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>Are you sure to delete this contact?</Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Close
+                    </Button>
+                    <Button variant="primary" onClick={handleDelete}>
+                      Delete
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
               </Col>
               <Col xs="6">
                 <Button
