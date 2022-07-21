@@ -20,32 +20,35 @@ export function AddPage() {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      setValidated(true);
     } else {
-      setValidated(false);
+      setValidated(true);
       event.preventDefault();
       event.stopPropagation();
-      axios.post(`http://127.0.0.1:4000/contacts/`, {
+      setLoading(true);
+      try{
+        axios.post(`http://127.0.0.1:4000/contacts/`, {
         fn: fn,
         ln: ln,
         email: email,
         number: number,
         avatar: avatar
-      })
-        .then((res) => {
-          if (res.status == 200) {
+      }).then((res) => {
+          if (res.status === 200) {
             navigate("/");
+            setLoading(false);
           }
         })
+      } catch(e) {
+        alert(e.message);
+      }
     }
-
   };
 
 
   return (
     <>
       {
-        (loading === true) ? (
+        loading ? (
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>

@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ContactPage, ListPage, AddPage } from "./pages"
+import { ListPage, CreatePage, ContactPage } from "./pages"
 
 function App() {
   return (
@@ -8,8 +8,9 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path='/' element={ <ListPage /> } />
+        <Route path=":keywords" element={ <ListPage /> } />
         <Route path='contact/:id' element={ <ContactPage /> } />
-        <Route path='add' element={ <AddPage /> } />
+        <Route path='create' element={ <CreatePage /> } />
       </Routes>
       </BrowserRouter>
     </>
